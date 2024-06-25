@@ -16,12 +16,26 @@ export class MainMenu extends Scene
 
         this.logo = this.add.image(512, 300, 'logo').setDepth(100);
 
-        this.add.text(512, 460, 'Main Menu', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setDepth(100).setOrigin(0.5);
+        // this.add.text(512, 400, 'Main Menu', {
+        //   fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
+        //   stroke: '#000000', strokeThickness: 8,
+        //   align: 'center'
+        // })
+        //   .setDepth(100)
+        //   .setOrigin(0.5)
+        //   .setInteractive()
+        //   .on('pointerdown', () => { console.log('Clicked Main Menu') });
         
+        this.btnConnect = this.add.text(512, 460, 'Connect', {
+          fontFamily: 'Arial Black', fontSize: 38, color: '#fffffc',
+          stroke: '#000000', strokeThickness: 8,
+          align: 'center'
+        })
+          .setDepth(100)
+          .setOrigin(0.5)
+          .setInteractive()
+          .on('pointerdown', () => { this.scene.start('Game') });
+
         EventBus.emit('current-scene-ready', this);
     }
 
@@ -36,37 +50,37 @@ export class MainMenu extends Scene
         this.scene.start('Game');
     }
 
-    moveLogo (reactCallback)
-    {
-        if (this.logoTween)
-        {
-            if (this.logoTween.isPlaying())
-            {
-                this.logoTween.pause();
-            }
-            else
-            {
-                this.logoTween.play();
-            }
-        }
-        else
-        {
-            this.logoTween = this.tweens.add({
-                targets: this.logo,
-                x: { value: 750, duration: 3000, ease: 'Back.easeInOut' },
-                y: { value: 80, duration: 1500, ease: 'Sine.easeOut' },
-                yoyo: true,
-                repeat: -1,
-                onUpdate: () => {
-                    if (reactCallback)
-                    {
-                        reactCallback({
-                            x: Math.floor(this.logo.x),
-                            y: Math.floor(this.logo.y)
-                        });
-                    }
-                }
-            });
-        }
-    }
+    // moveLogo (reactCallback)
+    // {
+    //     if (this.logoTween)
+    //     {
+    //         if (this.logoTween.isPlaying())
+    //         {
+    //             this.logoTween.pause();
+    //         }
+    //         else
+    //         {
+    //             this.logoTween.play();
+    //         }
+    //     }
+    //     else
+    //     {
+    //         this.logoTween = this.tweens.add({
+    //             targets: this.logo,
+    //             x: { value: 750, duration: 3000, ease: 'Back.easeInOut' },
+    //             y: { value: 80, duration: 1500, ease: 'Sine.easeOut' },
+    //             yoyo: true,
+    //             repeat: -1,
+    //             onUpdate: () => {
+    //                 if (reactCallback)
+    //                 {
+    //                     reactCallback({
+    //                         x: Math.floor(this.logo.x),
+    //                         y: Math.floor(this.logo.y)
+    //                     });
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }
 }
