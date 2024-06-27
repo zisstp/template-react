@@ -35,6 +35,7 @@ export class Preloader extends Scene
         this.load.image('logo', 'logo.png');
         this.load.image('star', 'star.png');
         this.load.image('player', 'player.png');
+        this.load.image('resource_stone', 'stone.png');
     }
 
     create ()
